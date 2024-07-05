@@ -1,5 +1,5 @@
 In this Application I have store expire time as well
-The expire this is 15 Days from the Date of creation of short link
+The link is expired in 15 Days from the Date of creation of short link
 
 My assumption is that,
 
