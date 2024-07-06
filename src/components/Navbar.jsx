@@ -55,7 +55,7 @@ const Navbar = () => {
 					</Button>
 				)}
 				{!token && (
-					<Button color="inherit" component={Link} to="/signup">
+					<Button color="inherit" component={Link} to="/">
 						Signup
 					</Button>
 				)}
