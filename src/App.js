@@ -19,7 +19,12 @@ function App() {
 			setToken(token);
 		};
 		fetchToken();
-	}, [navigate]);
+		if (!token) {
+			nevigate("/login");
+		} else {
+			nevigate("/url_shortner");
+		}
+	}, []);
 
 	return (
 		<div className="App">
