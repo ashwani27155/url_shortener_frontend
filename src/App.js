@@ -19,10 +19,10 @@ function App() {
 			setToken(token);
 		};
 		fetchToken();
+		if (!token) {
+			navigate("/login");
+		}
 	}, [navigate]);
-	if (!token) {
-		navigate("/login");
-	}
 
 	return (
 		<div className="App">
