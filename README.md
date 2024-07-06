@@ -5,3 +5,7 @@ Each UI element has a separate component, allowing us to reuse each component mu
 Utlize Axios for API calling, And make an axios instance for calling the API.
 
 For displaying the message use react tost module.
+
+Test Account :-
+email :- test@gmail.com
+password :- Test@123

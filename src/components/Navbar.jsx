@@ -3,16 +3,26 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import useLocalStroage from "../utils/localstroage";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import LocalStorage from "../utils/localstroage";
+import { Link, useNavigate } from "react-router-dom";
+
 const Navbar = () => {
-	const token = useLocalStroage();
-	const nevigate = useNavigate();
+	const [token, setToken] = useState(null);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		const fetchToken = async () => {
+			const token = await LocalStorage();
+			setToken(token);
+		};
+
+		fetchToken();
+	}, [token]);
+
 	const handleLogout = () => {
 		localStorage.removeItem("token");
-		nevigate("/login");
+		navigate("/login");
+		window.location.reload();
 		alert("Logged out successfully!");
 	};
 
@@ -20,21 +30,12 @@ const Navbar = () => {
 		<AppBar position="static">
 			<Toolbar>
 				<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-					URL Shortner
+					URL Shortener
 				</Typography>
+
 				{token && (
 					<Button color="inherit" onClick={handleLogout}>
 						Logout
-					</Button>
-				)}
-				{!token && (
-					<Button color="inherit" component={Link} to="/login">
-						Login
-					</Button>
-				)}
-				{!token && (
-					<Button color="inherit" component={Link} to="/">
-						Signup
 					</Button>
 				)}
 				{token && (
@@ -44,7 +45,18 @@ const Navbar = () => {
 				)}
 				{token && (
 					<Button color="inherit" component={Link} to="/url_shortner">
-						URL Shortner
+						URL Shortener
+					</Button>
+				)}
+
+				{!token && (
+					<Button color="inherit" component={Link} to="/login">
+						Login
+					</Button>
+				)}
+				{!token && (
+					<Button color="inherit" component={Link} to="/signup">
+						Signup
 					</Button>
 				)}
 			</Toolbar>

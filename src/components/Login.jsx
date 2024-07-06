@@ -34,13 +34,11 @@ const Login = () => {
 					localStorage.setItem("token", token);
 					toast.success(response.data.message);
 					nevigate("/url_shortner");
+					window.location.reload();
 				}
 			})
 			.catch((error) => {
-				console.error(
-					"There was an error!",
-					error.response ? error.response.data : error.message
-				);
+				console.error("There was an error! while login");
 				toast.error(error.response.data.message);
 			});
 	};

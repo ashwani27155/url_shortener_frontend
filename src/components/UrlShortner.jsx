@@ -10,7 +10,6 @@ const URLShortner = () => {
 	const [originalUrl, setOriginalUrl] = useState("");
 	const [shortenedUrl, setShortenedUrl] = useState("");
 	const [error, setError] = useState("");
-	const [token, setToken] = useState(""); // State
 
 	const handleChange = (e) => {
 		setOriginalUrl(e.target.value);
@@ -23,7 +22,7 @@ const URLShortner = () => {
 			.then((response) => {
 				if (response.data.shortId) {
 					const urlData = response.data.shortId;
-					const shortUrlData = `http://localhost:8081/${urlData}`;
+					const shortUrlData = `https://url-shortner-kii5.onrender.com/${urlData}`;
 					setShortenedUrl(shortUrlData);
 					setError("");
 					toast.success("Url shortner Done sussessfully");
@@ -34,14 +33,6 @@ const URLShortner = () => {
 				toast.error(error.response?.data?.message);
 			});
 	};
-
-	useEffect(() => {
-		//Fetch token from localStorage or sessionStorage
-		const storedToken = localStorage.getItem("token");
-		if (storedToken) {
-			setToken(storedToken);
-		}
-	}, []);
 
 	const copyToClipboard = () => {
 		navigator.clipboard.writeText(shortenedUrl);
