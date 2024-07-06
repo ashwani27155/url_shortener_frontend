@@ -19,9 +19,6 @@ function App() {
 			setToken(token);
 		};
 		fetchToken();
-		if (!token) {
-			navigate("/login");
-		}
 	}, [navigate]);
 
 	return (
