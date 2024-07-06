@@ -20,6 +20,9 @@ function App() {
 		};
 		fetchToken();
 	}, [navigate]);
+	if (!token) {
+		navigate("/login");
+	}
 
 	return (
 		<div className="App">
